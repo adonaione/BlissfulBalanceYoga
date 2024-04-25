@@ -1,0 +1,35 @@
+<!-- The doctype declaration isn't an HTML tag; it's an instruction to the web browser about what version of HTML the page is written in. -->
+<!doctype html>
+
+<!-- The HTML document itself begins with <html> and ends with </html>. The lang attribute defines the language of the document. -->
+<html lang="en">
+
+  <!-- The head element is a container for metadata (data about data) and is placed between the <html> tag and the <body> tag. -->
+  <head>
+
+    <!-- The meta charset attribute is used to specify the character encoding for the HTML document. -->
+    <meta charset="UTF-8" />
+
+    <!-- The link tag defines a link between a document and an external resource. Here, it is used to link to the favicon of the website. -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <!-- The viewport meta tag is used to control the layout on mobile browsers. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- The title element is required in all HTML documents and it defines the title of the document. -->
+    <title>Yoga App</title>
+
+  </head>
+
+  <!-- The body tag defines the document's body. -->
+  <body>
+
+    <!-- The div element with id "root" is the entry point for the React application. -->
+    <div id="root"></div>
+
+    <!-- The script tag is used to embed or reference executable code. Here, it is used to include the main TypeScript file that bootstraps the React application. -->
+    <script type="module" src="/src/main.tsx"></script>
+
+  </body>
+
+</html>
