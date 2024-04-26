@@ -7,6 +7,7 @@ import EditPost from './views/EditPost';
 import Home from './views/Home';
 import Login from './views/Login';
 import SignUp from './views/SignUp';
+import EditUser from './views/EditUser';
 import { CategoryType, UserType } from './types';
 import { getMe } from './lib/apiWrapper';
 
@@ -99,6 +100,8 @@ export default function App() {
                     <Route path="/login" element={<Login flashMessage={flashMessage} logUserIn={logUserIn} />} />
                     {/* Renders the edit post page */}
                     <Route path="/edit/:postId" element={<EditPost flashMessage={flashMessage} currentUser={loggedInUser} />} />
+                    {/* renders the edit user page */}
+                    <Route path='/user/:userId' element={<EditUser flashMessage={flashMessage} currentUser={loggedInUser} />} />
                 </Routes>
             </Container>
         </>

@@ -20,8 +20,8 @@ export default function SignUp({ flashMessage }: SignUpProps) {
         {
             firstName: '',
             lastName: '',
-            email: '',
             username: '',
+            email: '',
             password: '',
             confirmPassword: ''
         }
@@ -31,19 +31,20 @@ export default function SignUp({ flashMessage }: SignUpProps) {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserFormData({...userFormData, [e.target.name]: e.target.value })
+        console.log('input change')
     }
 
     const handleFormSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        console.log(userFormData);
+        console.log('form submit is being handled', userFormData);
 
         const response = await register(userFormData);
         if (response.error){
             flashMessage(response.error, 'danger');
         } else {
             const newUser = response.data!
-            flashMessage(`Congrats ${newUser.firstName} ${newUser.lastName} has been created with the username ${newUser.username}!`, 'success')
+            flashMessage(`Congrats ${newUser.firstName} ${newUser.lastName} has been created!`, 'success')
             navigate('/');
         }
     }
@@ -63,11 +64,11 @@ export default function SignUp({ flashMessage }: SignUpProps) {
                         <Form.Label htmlFor='lastName'>Last Name</Form.Label>
                         <Form.Control id='lastName' name='lastName' placeholder='Enter Last Name' value={userFormData.lastName} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='email'>Email</Form.Label>
-                        <Form.Control id='email' name='email' type='email' placeholder='Enter Email' value={userFormData.email} onChange={handleInputChange}/>
-
                         <Form.Label htmlFor='username'>Username</Form.Label>
                         <Form.Control id='username' name='username' placeholder='Enter Username' value={userFormData.username} onChange={handleInputChange}/>
+
+                        <Form.Label htmlFor='email'>Email</Form.Label>
+                        <Form.Control id='email' name='email' type='email' placeholder='Enter Email' value={userFormData.email} onChange={handleInputChange}/>
 
                         <Form.Label htmlFor='password'>Password (min. 5 characters) </Form.Label>
                         <InputGroup>

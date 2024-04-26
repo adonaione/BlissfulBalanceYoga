@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { PostFormDataType, PostType, TokenType, UserFormDataType, UserType } from '../types';
+import { PostFormDataType, PostType, TokenType, UserFormDataType, UserType, CommentType, CommentFormDataType } from '../types';
 
 // Define the base URL for the API
-const baseURL:string = 'https://fakebook-sjrq.onrender.com/'
+const baseURL:string = 'https://blissfulbalanceapiredo.onrender.com'
 
 // Define the endpoints for different API resources
 const userEndpoint:string = '/users'
@@ -42,6 +42,7 @@ async function register(newUserData:UserFormDataType): Promise<APIResponse<UserT
     let error;
     try{
         // Make a POST request to the user endpoint using the API client without authentication
+        console.log('data received')
         const response = await apiClientNoAuth().post(userEndpoint, newUserData); // send a post request to the register endpoint with the new user data
         data = response.data // store the response data in the 'data' variable
     } catch(err) {
@@ -84,7 +85,7 @@ async function getMe(token:string): Promise<APIResponse<UserType>> {
     let data; // Variable to store the response data
     let error; // Variable to store any error message
     try {
-        const response = await apiClientTokenAuth(token).get(userEndpoint + '/me'); // Send a GET request to retrieve user data
+        const response = await apiClientTokenAuth(token).get(userEndpoint + '/me' ); // Send a GET request to retrieve user data
         data = response.data; // Store the response data in the 'data' variable
     } catch(err) {
         if (axios.isAxiosError(err)){
@@ -93,6 +94,42 @@ async function getMe(token:string): Promise<APIResponse<UserType>> {
             error = 'Something went wrong'; // If it's not an Axios error, set a generic error message
         }
     }
+    return { data, error }; // Return an object containing the data and error variables
+}
+
+async function editMe(userId:string|number, token:string, editedUserData:UserFormDataType): Promise<APIResponse<UserType>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientTokenAuth(token).put(userEndpoint + '/' + userId, editedUserData);
+        data = response.data; // Store the response data in the 'data' variable
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `User with ID ${userId} does not exist`; // If the error is an Axios error, extract the error message from the response data or use a default error message
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
+    return { data, error }; // Return an object containing the data and error variables
+}
+
+async function deleteMe(userId:string|number, token:string): Promise<APIResponse<string>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientTokenAuth(token).delete(userEndpoint + '/' + userId);
+        data = response.data.success; // Store the success status in the 'data' variable
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `User with ID ${userId} does not exist`; // If the error is an Axios error, extract the error message from the response data or use a default error message
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
     return { data, error }; // Return an object containing the data and error variables
 }
 
@@ -134,39 +171,6 @@ async function createPost(token: string, postData: PostFormDataType): Promise<AP
     return { data, error }; // Return an object containing the data and error variables
 }
 
-
-
-// async function getAllPosts(): Promise<APIResponse<PostType[]>> {
-//     let data;
-//     let error;
-//     try{
-//         const response = await apiClientNoAuth().get(postEndpoint);
-//         data = response.data
-//     } catch(err) {
-//         if (axios.isAxiosError(err)){
-//             error = err.message
-//         } else {
-//             error = 'Something went wrong'
-//         }
-//     }
-//     return { data, error }
-// }
-
-// async function createPost(token:string, postData:PostFormDataType): Promise<APIResponse<PostType>> {
-//     let data;
-//     let error;
-//     try{
-//         const response = await apiClientTokenAuth(token).post(postEndpoint, postData)
-//         data = response.data
-//     } catch(err) {
-//         if (axios.isAxiosError(err)){
-//             error = err.response?.data.error
-//         } else {
-//             error = 'Something went wrong'
-//         }
-//     }
-//     return { data, error }
-// }
 
 
 async function getPostById(postId:string|number): Promise<APIResponse<PostType>> {
@@ -229,8 +233,89 @@ export {
     getAllPosts,
     login,
     getMe,
+    editMe,
+    deleteMe,
     createPost,
     getPostById,
     editPostById,
-    deletePostById
+    deletePostById,
+    createComment,
+    getCommentById,
+    editCommentById,
+    deleteCommentById
+}
+
+
+async function createComment(token: string, postId:string|number, commentData: CommentFormDataType): Promise<APIResponse<CommentType>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientTokenAuth(token).post((postEndpoint + '/' + postId), commentData); // Send a POST request to the API using the apiClientTokenAuth function and the provided token and postData
+        data = response.data; // Store the response data in the 'data' variable
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            error = err.response?.data.error; // If the error is an Axios error, store the error message from the response data in the 'error' variable
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
+    return { data, error }; // Return an object containing the data and error variables
+}
+
+
+
+async function getCommentById(postId:string|number, commentId:string|number): Promise<APIResponse<CommentType>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientNoAuth().get(postEndpoint + '/' + postId + '/' + commentId);
+        data = response.data; // Store the response data in the 'data' variable
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `Comment with ID ${commentId} does not exist`; // If the error is an Axios error, extract the error message from the response data or use a default error message
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
+    return { data, error }; // Return an object containing the data and error variables
+}
+
+async function editCommentById(postId:string|number, commentId:string|number, token:string, editedCommentData:CommentFormDataType): Promise<APIResponse<CommentType>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientTokenAuth(token).put(postEndpoint + '/' + postId + '/' + commentId, editedCommentData);
+        data = response.data; // Store the response data in the 'data' variable
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `Comment with ID ${commentId} does not exist`; // If the error is an Axios error, extract the error message from the response data or use a default error message
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
+    return { data, error }; // Return an object containing the data and error variables
+}
+
+async function deleteCommentById(postId:string|number, commentId: string|number, token:string): Promise<APIResponse<string>> {
+    let data; // Variable to store the response data
+    let error; // Variable to store any error message
+
+    try {
+        const response = await apiClientTokenAuth(token).delete(postEndpoint + '/' + postId + '/' + commentId);
+        data = response.data.success; // Store the success status in the 'data' variable
+    } catch(err) {
+        if (axios.isAxiosError(err)){
+            error = err.response?.data?.error || `Comment with ID ${commentId} does not exist`; // If the error is an Axios error, extract the error message from the response data or use a default error message
+        } else {
+            error = 'Something went wrong'; // If the error is not an Axios error, set a generic error message
+        }
+    }
+
+    return { data, error }; // Return an object containing the data and error variables
 }

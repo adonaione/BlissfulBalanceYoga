@@ -5,7 +5,7 @@ import App from './App.tsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import "bootstrap-icons/font/bootstrap-icons.css"; // Import Bootstrap Icons
-import './main.css'; // Import our own CSS - Should be imported AFTER bootstrap CSS
+// import './main.css'; // Import our own CSS - Should be imported AFTER bootstrap CSS
 
 /**
  * Render the React application to the root element in the HTML document.

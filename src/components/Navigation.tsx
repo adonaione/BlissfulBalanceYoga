@@ -30,7 +30,7 @@ export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps):
                     <Nav className='me-auto'>
                         {isLoggedIn ? ( // If the user is logged in
                             <>
-                                <Nav.Link href='/'>Create Post</Nav.Link> {/* Link to create a new post */}
+                                <Nav.Link href='/user/${user.id}'>Edit User</Nav.Link> {/* Link to edit the user */}
                                 <Nav.Link as={Link} to='/' onClick={()=> logUserOut()} href='/'>Log Out</Nav.Link> {/* Link to log out the user */}
                             </>
                         ) : ( // If the user is not logged in

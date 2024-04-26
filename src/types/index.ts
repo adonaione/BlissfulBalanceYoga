@@ -5,6 +5,7 @@ export type UserType = {
     id: number, // The unique identifier of the user.
     firstName: string, // The first name of the user.
     lastName: string, // The last name of the user.
+    username: string, // The username of the user.
     email: string, // The email address of the user.
     dateCreated: string // The date when the user was created.
 }
@@ -13,6 +14,7 @@ export type UserType = {
 export type UserFormDataType = {
     firstName: string, // The first name of the user.
     lastName: string, // The last name of the user.
+    username: string, // The username of the user.
     email: string, // The email address of the user.
     password: string, // The password of the user.
     confirmPassword: string // The confirmation password of the user.
