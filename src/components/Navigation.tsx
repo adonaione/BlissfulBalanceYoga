@@ -1,6 +1,7 @@
 import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, Container } from 'react-bootstrap';
+import { UserType } from '../types';
 
 
 /**
@@ -9,6 +10,7 @@ import { Nav, Navbar, Container } from 'react-bootstrap';
 type NavigationProps = {
     isLoggedIn: boolean; // Indicates whether the user is logged in or not
     logUserOut: () => void; // Function to log the user out
+    user: UserType | null; // The currently logged-in user or null if no user is logged in
 
 }
 
@@ -17,7 +19,7 @@ type NavigationProps = {
  * @param {NavigationProps} props - The props for the Navigation component.
  * @returns {JSX.Element} The rendered Navigation component.
  */
-export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps): JSX.Element {
+export default function Navigation({ isLoggedIn, logUserOut, user }: NavigationProps): JSX.Element {
 
     
     
@@ -32,7 +34,7 @@ export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps):
                     <Nav className='me-auto'>
                         {isLoggedIn ? ( // If the user is logged in
                             <>
-                                <Nav.Link href='/user/${user.id}'>Edit User</Nav.Link> {/* Link to edit the user */}
+                                <Nav.Link as={Link} to={`/user/${ user?.id }`}>Edit User</Nav.Link> {/* Link to edit the user */}
                                 <Nav.Link as={Link} to='/' onClick={()=> logUserOut()} href='/'>Log Out</Nav.Link> {/* Link to log out the user */}
                             </>
                         ) : ( // If the user is not logged in

@@ -21,7 +21,7 @@ type EditUserProps = {
 // This component is responsible for rendering a form to edit a post.
 // It receives the following props: flashMessage (a function to display flash messages), and currentUser (the currently logged-in user).
 export default function EditUser({ flashMessage, currentUser }: EditUserProps) {
-    // The useParams hook is used to retrieve the postId from the URL parameters.
+    // The useParams hook is used to retrieve the userId from the URL parameters.
     const { userId } = useParams();
     // The useNavigate hook is used to programmatically navigate to different routes.
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ export default function EditUser({ flashMessage, currentUser }: EditUserProps) {
         async function getUser() {
             // The getPostById function is called with the postId to retrieve the post data.
             
-            const response = await getMe(userId!, localStorage.getItem('token') || '');
+            const response = await getMe( localStorage.getItem('token') || '');
             if (response.data) {
                 // If the response contains data, it means the post exists.
                 const user = response.data;
@@ -70,7 +70,7 @@ export default function EditUser({ flashMessage, currentUser }: EditUserProps) {
 
         // Call the getPost function when the component mounts or when the postId or currentUser changes.
         getUser();
-    }, [userId, currentUser]);
+    }, [flashMessage, currentUser, navigate]);
 
     // The handleInputChange function is called when the input fields in the form are changed.
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +83,7 @@ export default function EditUser({ flashMessage, currentUser }: EditUserProps) {
         event.preventDefault();
         // Retrieve the token from the local storage.
         const token = localStorage.getItem('token') || '';
+        const userId = localStorage.getItem('userId');
         // Call the editPostById function to update the post with the new data.
         const response = await editMe(userId!, token, userToEditData);
         if (response.error) {
