@@ -79,7 +79,7 @@ export default function Home({isLoggedIn, currentUser, flashMessage}: HomeProps)
 
     return (
         <>
-            <h1 id="greeting" className="text-center">{isLoggedIn && currentUser ? `Om Shanti, ${currentUser?.firstName}` : 'Namaste, Relative' }</h1>
+            <h1 id="greeting" className="text-center">{isLoggedIn && currentUser ? `Om Shanti, ${currentUser?.username}` : 'Namaste, Relative' }</h1>
             <Row>
                 <Col xs={12} md={6}>
                     <Form.Control id="searchbox" value={searchTerm} placeholder='Search Posts' onChange={handleInputChange} />

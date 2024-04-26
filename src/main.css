@@ -60,6 +60,7 @@ a:hover {
 
 #header {
     color:whitesmoke;
+    font-family: 'Lobster', cursive;
 }
 
 #signUpCard {
@@ -98,6 +99,10 @@ a:hover {
     transition: 0.7s;
 }
 
+.loginHeader {
+    color: whitesmoke;
+    font-family: 'Lobster', cursive;
+}
 
 .loginForm {
     

@@ -50,7 +50,7 @@ export default function Login({ flashMessage, logUserIn }: LoginProps) {
 
     return (
         <>
-            <h1 className="text-center">Log In Here</h1>
+            <h1 className="text-center loginHeader">Log In Here</h1>
             <Card className="loginForm">
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
