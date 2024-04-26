@@ -79,13 +79,13 @@ export default function Home({isLoggedIn, currentUser, flashMessage}: HomeProps)
 
     return (
         <>
-            <h1 className="text-center">{isLoggedIn && currentUser ? `Om Shanti, ${currentUser?.firstName}` : 'Namaste, Relative' }</h1>
+            <h1 id="greeting" className="text-center">{isLoggedIn && currentUser ? `Om Shanti, ${currentUser?.firstName}` : 'Namaste, Relative' }</h1>
             <Row>
                 <Col xs={12} md={6}>
-                    <Form.Control value={searchTerm} placeholder='Search Posts' onChange={handleInputChange} />
+                    <Form.Control id="searchbox" value={searchTerm} placeholder='Search Posts' onChange={handleInputChange} />
                 </Col>
                 <Col>
-                    <Form.Select onChange={handleSelectChange}>
+                    <Form.Select id="sorter" onChange={handleSelectChange}>
                         <option>Choose Sorting Option</option>
                         <option value="idAsc">Sort By ID ASC</option>
                         <option value="idDesc">Sort By ID DESC</option>
@@ -95,7 +95,7 @@ export default function Home({isLoggedIn, currentUser, flashMessage}: HomeProps)
                 </Col>
                 {isLoggedIn && (
                     <Col>
-                        <Button className='w-100' variant='success' onClick={() => setShowForm(!showForm)}>{showForm ? 'Hide Form' : 'Add Post+'}</Button>
+                        <Button className='w-100' id="addPost" onClick={() => setShowForm(!showForm)}>{showForm ? 'Hide Form' : 'Add Post+'}</Button>
                     </Col>
                 )}
             </Row>

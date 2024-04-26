@@ -1,0 +1,115 @@
+.background-video {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0; 
+    
+    
+    z-index: -1; 
+}
+
+.body {
+    background-size: cover;
+}
+
+.bg-custom {
+    opacity: 0.7;
+    
+}
+
+#timestamp {
+    font-family: 'Courier New', Courier, monospace
+
+}
+
+#cardTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+#cardBody {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+#cardUsername{
+    font-family: 'Courier New', Courier, monospace
+
+}
+
+a:hover {
+    font-size: 150%
+}
+
+#searchbox {
+    opacity: 0.777 
+}
+
+#sorter {
+    opacity: 0.777
+}
+
+#greeting {
+    color: whitesmoke;
+    font-family: 'Lobster', cursive;
+}
+
+#addPost {
+    background-color: #43872a;
+    opacity: 0.777
+}
+
+#header {
+    color:whitesmoke;
+}
+
+#signUpCard {
+    
+    opacity: 0.6
+}
+#firstName {
+    border: 1px solid black;
+    
+}
+.firstNameLabel {
+    font-weight: bold;
+}
+#lastName {
+    border: 1px solid black;
+}
+#username {
+    border: 1px solid black;
+}
+#password {
+    border: 1px solid black;
+}
+#confirmPassword {
+    border: 1px solid black;
+}
+#email {
+    border: 1px solid black;
+}
+
+.createUserButton:hover {
+     background-color: blue;
+     transition: 0.7s;
+}
+.loginButton:hover {
+    background-color: blue;
+    transition: 0.7s;
+}
+
+
+.loginForm {
+    
+    opacity: 0.6
+}
+
+#label {
+    font-weight: bold;
+}
+
+.navbar {
+    opacity: 0.6;
+    background-color: rgb(233, 229, 229);
+    
+}

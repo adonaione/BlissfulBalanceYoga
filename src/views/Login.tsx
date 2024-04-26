@@ -51,19 +51,19 @@ export default function Login({ flashMessage, logUserIn }: LoginProps) {
     return (
         <>
             <h1 className="text-center">Log In Here</h1>
-            <Card>
+            <Card className="loginForm">
                 <Card.Body>
                     <Form onSubmit={handleFormSubmit}>
-                        <Form.Label htmlFor='username'>Username</Form.Label>
+                        <Form.Label id="label" htmlFor='username'>Username</Form.Label>
                         <Form.Control id='username' name='username' placeholder='Enter Username' value={userFormData.username} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='password'>Password</Form.Label>
+                        <Form.Label id="label" htmlFor='password'>Password</Form.Label>
                         <InputGroup>
                             <Form.Control id='password' name='password' type={seePassword ? 'text' : 'password'} placeholder='Enter Password' value={userFormData.password} onChange={handleInputChange}/>
                             <InputGroup.Text onClick={() => setSeePassword(!seePassword)}><i className={seePassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i></InputGroup.Text>
                         </InputGroup>
 
-                        <Button type='submit' variant='outline-primary' className='w-100 mt-3'>Log In</Button>
+                        <Button type='submit' variant='outline-primary' className='w-100 mt-3 loginButton'>Log In</Button>
                     </Form>
                 </Card.Body>
             </Card>

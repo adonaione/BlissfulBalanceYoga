@@ -54,35 +54,35 @@ export default function SignUp({ flashMessage }: SignUpProps) {
 
     return (
         <>
-            <h1 className="text-center">Sign Up Here</h1>
-            <Card>
-                <Card.Body>
-                    <Form onSubmit={handleFormSubmit}>
-                        <Form.Label htmlFor='firstName'>First Name</Form.Label>
-                        <Form.Control id='firstName' name='firstName' placeholder='Enter First Name' value={userFormData.firstName} onChange={handleInputChange}/>
+            <h1 className="text-center" id="header">Sign Up Here</h1>
+            <Card id="signUpCard"  className="font-weight-bold">
+                <Card.Body >
+                    <Form onSubmit={handleFormSubmit} >
+                        <Form.Label className="firstNameLabel" htmlFor='firstName'>First Name</Form.Label>
+                        <Form.Control className="input-text" id='firstName' name='firstName' placeholder='Enter First Name' value={userFormData.firstName} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='lastName'>Last Name</Form.Label>
+                        <Form.Label className="firstNameLabel" htmlFor='lastName'>Last Name</Form.Label>
                         <Form.Control id='lastName' name='lastName' placeholder='Enter Last Name' value={userFormData.lastName} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='username'>Username</Form.Label>
+                        <Form.Label className="firstNameLabel" htmlFor='username'>Username</Form.Label>
                         <Form.Control id='username' name='username' placeholder='Enter Username' value={userFormData.username} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='email'>Email</Form.Label>
+                        <Form.Label className="firstNameLabel" htmlFor='email'>Email</Form.Label>
                         <Form.Control id='email' name='email' type='email' placeholder='Enter Email' value={userFormData.email} onChange={handleInputChange}/>
 
-                        <Form.Label htmlFor='password'>Password (min. 5 characters) </Form.Label>
+                        <Form.Label className="firstNameLabel" htmlFor='password'>Password (min. 5 characters) </Form.Label>
                         <InputGroup>
                             <Form.Control id='password' name='password' type={seePassword ? 'text' : 'password'} placeholder='Enter Password' value={userFormData.password} onChange={handleInputChange}/>
                             <InputGroup.Text onClick={() => setSeePassword(!seePassword)}><i className={seePassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i></InputGroup.Text>
                         </InputGroup>
 
-                        <Form.Label htmlFor='confirmPassword'>Confirm Password</Form.Label>
+                        <Form.Label className="firstNameLabel" htmlFor='confirmPassword'>Confirm Password</Form.Label>
                         <InputGroup>
                             <Form.Control id='confirmPassword' name='confirmPassword'  type={seePassword ? 'text' : 'password'} placeholder='Confirm Password' value={userFormData.confirmPassword} onChange={handleInputChange}/>
                             <InputGroup.Text onClick={() => setSeePassword(!seePassword)}><i className={seePassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i></InputGroup.Text>
                         </InputGroup>
 
-                        <Button type='submit' variant='outline-primary' className='w-100 mt-3' disabled={disableSubmit}>Create New User</Button>
+                        <Button type='submit' variant='outline-primary' className='w-100 mt-3 firstNameLabel createUserButton' disabled={disableSubmit}>Create New User</Button>
                     </Form>
                 </Card.Body>
             </Card>

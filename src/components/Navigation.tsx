@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
-import { Nav, Navbar, Button, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 
 
 /**
@@ -19,12 +19,14 @@ type NavigationProps = {
  */
 export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps): JSX.Element {
 
-    const [backgroundTheme, setBackgroundTheme] = useState('dark'); // State to track the background theme of the navigation bar
+    
     
     return (
-        <Navbar expand='lg' data-bs-theme={backgroundTheme} bg={backgroundTheme}>
+        <Navbar expand='lg' className="navbar">
             <Container fluid>
-                <Navbar.Brand as={Link} to='/'>Blissful Balance</Navbar.Brand> {/* Brand link to the home page */}
+            <Navbar.Brand as={Link} to='/'>
+                <img src={logo} alt="Bliss" height="50" width="100"/>
+            </Navbar.Brand> {/* Brand link to the home page */}
                 <Navbar.Toggle aria-controls='nav-collapse' />
                 <Navbar.Collapse id='nav-collapse'>
                     <Nav className='me-auto'>
@@ -40,9 +42,7 @@ export default function Navigation({ isLoggedIn, logUserOut }: NavigationProps):
                             </>
                         )}
                     </Nav>
-                    <Nav>
-                        <Button onClick={() => setBackgroundTheme(backgroundTheme === 'dark' ? 'light' : 'dark')}>Change Background</Button> {/* Button to change the background theme */}
-                    </Nav>
+                    
                 </Navbar.Collapse>
             </Container>
         </Navbar>

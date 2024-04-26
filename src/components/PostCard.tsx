@@ -13,19 +13,19 @@ export default function PostCard({ post, currentUser }: PostCardProps) {
     // This is a functional component named PostCard that accepts two props: post and currentUser
     
     return (
-        <Card className='my-3 bg-custom' >
+        <Card className='my-3 bg-custom'  >
             {/* This is the header section of the card */}
-            <Card.Header>{ post.dateCreated }</Card.Header>
+            <Card.Header id="timestamp">{ post.dateCreated }</Card.Header>
             
             <Card.Body>
                 {/* This is the title section of the card */}
-                <Card.Title>{ post.title }</Card.Title>
+                <Card.Title id="cardTitle">{ post.title }</Card.Title>
                 
                 {/* This is the subtitle section of the card */}
-                <Card.Subtitle>{ post.author.username }</Card.Subtitle>
+                <Card.Subtitle id="cardUsername">{ post.author.username }</Card.Subtitle>
                 
                 {/* This is the body section of the card */}
-                <Card.Text>{ post.body }</Card.Text>
+                <Card.Text id="cardBody">{ post.body }</Card.Text>
                 
                 
             </Card.Body>
